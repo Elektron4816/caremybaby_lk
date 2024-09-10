@@ -1,0 +1,68 @@
+#logo {
+    width: 192px;
+    height: 32px;
+    position: relative;
+    top: 16px;
+    left: 12px;
+}
+
+body {
+    background-color: #f5f0e7;
+}
+
+.input {
+    width: 95%;
+    height: 50px;
+    background-color: #FBF7EF;
+    border-radius: 1em;
+    border: none;
+    outline: none;
+    /* margin-bottom: 15px; */
+    padding-left: 15px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+#numberFromTg {
+    cursor: not-allowed;
+    color: #D7CEBD;
+}
+
+.tooltip-text {
+    background-color: #333333;
+    color: #ffffff;
+
+    padding: 20px 18px 18px 22px;
+    border-radius: 10px;
+    position: absolute;
+    left: 50%;
+    z-index: 1;
+    transform: translateX(-50%);
+    display: none;
+}
+
+#numberFromTg:hover+.tooltip-text {
+    display: block;
+}
+
+.alertContent {
+    background-color: #fffbf4;
+}
+
+#sendButton {
+    margin-top: 15px;
+}
+
+#errMess {
+    font-size: 12px;
+    padding-left: 15px;
+    color: red;
+}
+
+.tooltip {
+    margin-bottom: 15px;
+}

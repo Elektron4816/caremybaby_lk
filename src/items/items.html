@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <script src="/node_modules/intl-tel-input/build/js/intlTelInput.js"></script>
+  <link rel="stylesheet" href="/node_modules/intl-tel-input/build/css/intlTelInput.css" />
+  <title>Предметы</title>
+
+  <!-- Yandex.Metrika counter -->
+  <script type="text/javascript">
+    (function (m, e, t, r, i, k, a) {
+      m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
+      m[i].l = 1 * new Date();
+      for (var j = 0; j < document.scripts.length; j++) { if (document.scripts[j].src === r) { return; } }
+      k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+    })
+      (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(97855669, "init", {
+      clickmap: true,
+      trackLinks: true,
+      accurateTrackBounce: true,
+      webvisor: true
+    });
+  </script>
+  <noscript>
+    <div><img src="https://mc.yandex.ru/watch/97855669" style="position:absolute; left:-9999px;" alt="" /></div>
+  </noscript>
+  <!-- /Yandex.Metrika counter -->
+
+  <!-- <script>
+    let tg = window.Telegram.WebApp;
+    try {
+      tg.initDataUnsafe.user.id;
+      // document.getElementById("test").innerHTML = "через телеграм";
+    } catch (_) {
+      window.location.href = "/accessError/";
+      // document.getElementById("test").innerHTML = "через сайт";
+    }
+  </script> -->
+</head>
+
+<body>
+  <div class="navbar" id="navbar"></div>
+  <div class="header" id="header"></div>
+
+  <div class="main">
+    <div class="mainHeader">
+      <h1>Предметы</h1>
+      <label for="liveInput" class="inp">
+        <input type="text" id="liveInput" placeholder="&nbsp;" />
+        <span class="label">Введите название предмета</span>
+      </label>
+    </div>
+    <div class="moreAboutLesson classHide">
+      <div>
+        <!-- <div class="inlineContainer" id="backToLesson">
+              <img
+                src="/image/arrow_forward_ios_24dp_FILL0_wght600_GRAD0_opsz24 2.svg"
+              />
+              <h3>Назад к предметам</h3>
+            </div> -->
+        <h1 id="setNameLesson"></h1>
+      </div>
+
+      <div class="oneItem">
+        <div class="imgBackground" id="setBgImage">
+          <div class="age">
+            <img src="" id="ellipse" />
+            <p class="tooltip" id="setAgeLesson"></p>
+          </div>
+          <div class="inlineContainer">
+            <div class="duration">
+              <img src="" id="clockIcok" />
+              <h3 id="setDurationLesson"></h3>
+            </div>
+            <div class="cost">
+              <img src="" id="rubIcon" />
+              <h3 id="setCostLesson"></h3>
+            </div>
+          </div>
+        </div>
+        <div class="bottom bottomOne">
+          <p id="setAboutLesson"></p>
+          <button id="textOnButton">Попробовать бесплатно</button>
+          <a target="_blank" id="linkToSite"><button class="goToSite">Читать подробнее на сайте</button></a>
+        </div>
+      </div>
+    </div>
+    <div id="innerLessonHier"></div>
+  </div>
+  <div class="alertPopUp"></div>
+
+  <div id="referrernoAuthTrial" class="referrer">
+    <form class="bPopupContent" id="noAuthTrial" method="post">
+      <div class="flex">
+        <img src="" class="closePopUp" id="closeCross" />
+      </div>
+      <h1>Записаться на бесплатный пробный урок</h1>
+      <h3 class="innerNameLesson fortest" id="nameLessonFromTrial"></h3>
+      <input type="text" placeholder="Ваше имя" name="clientName" />
+      <input type="text" placeholder="Имя ребенка" name="childName" />
+      <input type="tel" name="phoneNumber" id="requiredNumber1" class="numberPhone" />
+      <p class="errMsg" id="errMsg1"></p>
+      <button type="submit" id="submitNoAuthTrial">Оставить заявку</button>
+    </form>
+  </div>
+
+  <div id="referrerAuthTrial" class="referrer">
+    <form class="bPopupContent" id="AuthTrial">
+      <div class="flex">
+        <img src="" class="closePopUp" id="closeCross1" />
+      </div>
+      <h1>Записаться на бесплатный пробный урок</h1>
+      <h3 class="innerNameLesson" id="nameLessonAuthTrial"></h3>
+      <!-- <input type="datetime-local" placeholder="Желаемая дата" /> -->
+      <input class="pa__middle-input text" type="date" name="date" placeholder="Желаемая дата"
+        onchange="this.className=(this.value!=''?'has-value':'')" required />
+      <input type="text" placeholder="Имя ребенка" name="childName" required />
+      <input type="tel" name="phoneNumber" id="requiredNumber2" class="numberPhone" />
+      <p class="errMsg" id="errMsg2"></p>
+      <!-- <input type="datetime-local" /> -->
+      <button type="submit" id="submitAuthTrial">Оставить заявку</button>
+    </form>
+  </div>
+
+  <div id="referrerAuthClient" class="referrer">
+    <form class="bPopupContent" id="authClient">
+      <div class="flex">
+        <img src="" class="closePopUp" id="closeCross2" />
+      </div>
+      <h1>Записаться на бесплатный пробный урок</h1>
+      <h3 class="innerNameLesson" id="lessonAuthClient"></h3>
+      <!-- <input type="datetime-local" placeholder="Желаемая дата" /> -->
+      <input class="pa__middle-input text" type="date" name="date" placeholder="Желаемая дата"
+        onchange="this.className=(this.value!=''?'has-value':'')" required />
+      <select name="timesOfDay" class="MyInput">
+        <!--Supplement an id here instead of using 'name'-->
+        <option value="--" selected>Желаемое время</option>
+        <option value="Утро">Утро</option>
+        <option value="День">День</option>
+        <option value="Вечер">Вечер</option>
+      </select>
+      <input type="text" placeholder="Пожелания" name="comment" />
+      <!-- <input type="datetime-local" /> -->
+      <button type="submit" id="submitAuthClient">Оставить заявку</button>
+    </form>
+  </div>
+</body>
+
+</html>

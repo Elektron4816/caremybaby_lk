@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+
+  <link href="/node_modules/cropperjs/dist/cropper.css" rel="stylesheet">
+  <script src="/node_modules/cropperjs/dist/cropper.js"></script>
+
+  <!-- Yandex.Metrika counter -->
+  <script type="text/javascript">
+    (function (m, e, t, r, i, k, a) {
+      m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
+      m[i].l = 1 * new Date();
+      for (var j = 0; j < document.scripts.length; j++) { if (document.scripts[j].src === r) { return; } }
+      k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+    })
+      (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(97855669, "init", {
+      clickmap: true,
+      trackLinks: true,
+      accurateTrackBounce: true,
+      webvisor: true
+    });
+  </script>
+  <noscript>
+    <div><img src="https://mc.yandex.ru/watch/97855669" style="position:absolute; left:-9999px;" alt="" /></div>
+  </noscript>
+  <!-- /Yandex.Metrika counter -->
+
+  <!-- <script>
+    let tg = window.Telegram.WebApp;
+    try {
+      tg.initDataUnsafe.user.id;
+      // document.getElementById("test").innerHTML = "через телеграм";
+    } catch (_) {
+      window.location.href = "/accessError/";
+      // document.getElementById("test").innerHTML = "через сайт";
+    }
+  </script> -->
+</head>
+
+<body>
+  <div class="alertPopUp"></div>
+  <div class="main" id="firstMain">
+    <div class="headerProfile">
+      <div class="circelProfile">
+        <p id="profileImg"></p>
+        <!-- <div class="littleCircle"> -->
+
+        <!-- </div> -->
+        <label class="input-file-row littleCircle">
+          <label class="input-file">
+            <input type="file" name="file" accept=".jpg, .jpeg, .png" id="file">
+            <img id="uploadImg" src="" alt="pencil" />
+          </label>
+        </label>
+      </div>
+      <div class="infoClient">
+        <h1 id="clientNameProfile"></h1>
+        <p id="clienIdProfile"></p>
+      </div>
+    </div>
+
+    <div class="bodyProfile">
+      <div class="firstBodyContainer">
+        <div class="bodyContainer">
+          <h2 id="lessonsMinutes"></h2>
+          <p class="tooltip">отзанимались с нами</p>
+        </div>
+        <div class="bodyContainer">
+          <h2 id="clientVisit"></h2>
+          <p class="tooltip">уроков с нами</p>
+        </div>
+      </div>
+      <div class="secondBodyContainer">
+        <div class="bodyContainer">
+          <h2 id="amountAvarage"></h2>
+          <p class="tooltip">средняя длина урока</p>
+        </div>
+        <div class="bodyContainer">
+          <h2 id="bonusesGet"></h2>
+          <p class="tooltip">бонусов получено</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div id="resizerDemo">
+      <img id="avatar" alt="avatar" />
+    </div> -->
+    <!-- <button id="prewiew"></button> -->
+
+    <!-- <div class="logOut">
+            <button id="logOut" class="btn">Выйти</button>
+          </div> -->
+    <p id="logOut">Выйти</p>
+  </div>
+  <div class="main classHide" id="uploadAvatar">
+    <!-- <div class="input-file-row">
+      <label class="input-file">
+        <input type="file" name="file" accept=".jpg, .jpeg, .png" id="file">
+        <span>Загрузите фото</span>
+      </label>
+    </div> -->
+    <div class="resizerDemo">
+      <!-- <img id="avatar" alt="avatar" src=""/> -->
+    </div>
+    <button id="saveAvatar">Сохранить</button>
+    <button id="previewAvatar">Предпросмотр</button>
+  </div>
+  <div class="referrer" id="showPreview">
+    <div class="bPopupContent">
+      <div class="flex">
+        <img src="" id="closeBtn" />
+      </div>
+      <!-- <img src="" id="previewImg" /> -->
+      <div id="previewImg"></div>
+      <button id="acceptAvatar">Закрыть</button>
+    </div>
+  </div>
+  <div class="preloader">
+    <div class="loader"></div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,408 @@
+.btn {
+  width: 100%;
+}
+
+/*.btn:hover{
+    background-color: #fc8a56;
+    cursor: pointer;
+    animation: horizontal-shaking 0.35s infinite;
+  } */
+
+#auth {
+  margin-bottom: 60px;
+}
+
+#home>label {
+  color: #ee7a45;
+}
+
+.addBorderRadius {
+  border-radius: 30px 30px 0 0;
+}
+
+.logInWindow {
+  margin-top: 30px;
+}
+
+.classHide {
+  display: none !important;
+}
+
+.owerFlowWindod {
+  margin-top: 20px;
+  display: flex;
+  gap: 20px;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  /* width: 300px; */
+  /* -webkit-overflow-scrolling: auto; */
+}
+
+.slide {
+  border-radius: 20px;
+  flex: none;
+  scroll-snap-align: center;
+  width: 269px;
+  height: 95px;
+  padding: 16px;
+  line-height: 13px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.h3Ower {
+  margin-bottom: 8px;
+}
+
+.material {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 50px;
+  gap: 30px 10px;
+}
+
+.divImage {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.logOut {
+  margin-bottom: 65px;
+}
+
+.schedule,
+.balance {
+  width: 90;
+  /* height: 156px; */
+  background-color: #fffbf4;
+  border-radius: 20px;
+  padding: 20px;
+  margin-bottom: 15px;
+}
+
+.balance {
+  margin-bottom: 0;
+}
+
+.balanceHead {
+  display: flex;
+  /* flex-direction: column; */
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.gift {
+  width: 80px;
+  height: 25px;
+  margin: 0;
+  background-color: #ee7a45;
+  border-radius: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+#BodyBonus {
+  color: #ffffff;
+  margin-left: 4px;
+}
+
+.scheduleHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.logInWindowTitle {
+  margin: 0;
+}
+
+/* .scheduleMore {
+    margin: 0;
+    display: flex;
+    color: #ee7a45;
+    font-size: 12px;
+    font-family: "Gilroy-SemiBold";
+    cursor: pointer;
+  }
+  .scheduleMore > span {
+    border-bottom: 1px solid #ee7a45;
+  }
+  
+  .scheduleMore > img {
+    margin: auto;
+  } */
+
+#scheduleMoreButton {
+  background-color: #f5f0e7;
+  color: #313131;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#scheduleMoreButton:hover {
+  background-color: #f2ebde;
+}
+
+#scheduleMoreButton:active {
+  background-color: #dbceb7;
+}
+
+.scheduleItem {
+  display: flex;
+  cursor: pointer;
+  margin-bottom: 16px;
+}
+
+.scheduleAbout {
+  border-left: 2px solid #ee7a45;
+  padding-left: 10px;
+}
+
+.scheduleAbout>p {
+  margin: 0;
+}
+
+.scheduleDate {
+  margin-bottom: 4px;
+}
+
+.scheduleBody {
+  margin-bottom: 24px;
+}
+
+.sixe {
+  font-size: 16px;
+  font-family: "Gilroy-Medium";
+  line-height: 16px;
+}
+
+.balanceBody>div>img {
+  margin-right: 10px;
+}
+
+.balanceBody>div>h3 {
+  align-self: center;
+  margin-right: 3px;
+}
+
+.balanceRub,
+.balanceEuro {
+  margin-bottom: 4px;
+  display: flex;
+}
+
+.openPopUp {
+  flex: 1;
+  /* min-width: 40px;
+    max-width: 100%; */
+  cursor: pointer;
+  /* margin-bottom: 30px;
+  margin-right: 10px; */
+  /* margin: 10px; */
+}
+
+/* #referrer {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(86, 86, 86, 0.6);
+    overflow: hidden;
+    position: fixed;
+    top: 0px;
+    display: none;
+    justify-content: center;
+  } */
+
+.bPopupContent {
+  padding: 0;
+}
+
+.popUpImg {
+  border-radius: 30px 30px 0 0;
+}
+
+.imgContainer {
+  width: 100%;
+  border-radius: 20px;
+  /* height: auto; */
+}
+
+.bodyPopUp {
+  padding: 20px;
+}
+
+#nameMaterialPopUp {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+#descriptionPopUp {
+  margin-bottom: 10px;
+}
+
+#zero {
+  /* background-image: url("/image/Photo-Ottom.png"); */
+  height: 223px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 16px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.btn-close {
+  cursor: pointer;
+  position: absolute;
+}
+
+/* body :not(#referrer) {
+    filter: blur(2px);
+  } */
+
+/* .main:not(.bPopupContent) {
+    filter: blur(5px);
+  } */
+
+.imgDiv {
+  border-radius: 20px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-width: 160px;
+  min-height: 160px;
+  width: 100%;
+  aspect-ratio: 1/1;
+}
+
+.ref {
+  display: none;
+}
+
+
+.labelFromImg {
+  margin-top: 10px;
+}
+
+/* stories_start */
+
+.allStory {
+  overflow-x: scroll;
+  display: flex;
+}
+
+/* .stories.carousel {
+  white-space: unset;
+} */
+
+.item-preview .div-image {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: flex-end;
+  padding: 0 0 16px 8px;
+  box-sizing: border-box;
+}
+
+.stories.snapgram .story>.item-link>.item-preview img {
+  border-radius: 20px;
+  border: none;
+}
+
+.media-image {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+#zuck-modal-content .story-viewer .head .left .info .name {
+  font-family: "Gilroy-SemiBold";
+}
+
+/* .stories.carousel .story {
+  margin: 0 20px 0 0 !important;
+  min-height: 108px;
+  width: 84px;
+} */
+
+.stories.snapgram .story>.item-link>.item-preview {
+  border-radius: 18px;
+  padding: 0;
+  min-height: 108px;
+  width: 84px;
+}
+
+/* stories_end */
+
+.smallBtn {
+  padding: 3px 10px;
+  width: max-content;
+  height: max-content;
+}
+
+.field {
+  background-color: #fffbf4;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  padding: 16px;
+  margin-top: 15px;
+  cursor: pointer;
+}
+
+.sevenFeetUnderKeel {
+  max-width: 230px;
+}
+
+.circleField {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #ee7a45;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.hName {
+  margin: 15px 0 30px 0;
+}
+
+.inlineButton {
+  display: flex;
+}
+
+.inlineButton>button:first-child {
+  width: 70%;
+  margin-right: 10px;
+}
+
+.inlineButton>button:last-child {
+  background-color: #fffbf4;
+  color: #313131;
+  width: 30%;
+}
+
+.inlineButton>button:last-child:hover {
+  background-color: #fbf7ef;
+}

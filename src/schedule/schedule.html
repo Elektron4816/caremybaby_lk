@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <title>Расписание</title>
+
+  <!-- Yandex.Metrika counter -->
+  <script type="text/javascript">
+    (function (m, e, t, r, i, k, a) {
+      m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
+      m[i].l = 1 * new Date();
+      for (var j = 0; j < document.scripts.length; j++) { if (document.scripts[j].src === r) { return; } }
+      k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+    })
+      (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(97855669, "init", {
+      clickmap: true,
+      trackLinks: true,
+      accurateTrackBounce: true,
+      webvisor: true
+    });
+  </script>
+  <noscript>
+    <div><img src="https://mc.yandex.ru/watch/97855669" style="position:absolute; left:-9999px;" alt="" /></div>
+  </noscript>
+  <!-- /Yandex.Metrika counter -->
+
+  <!-- <script>
+    let tg = window.Telegram.WebApp;
+    try {
+      tg.initDataUnsafe.user.id;
+      // document.getElementById("test").innerHTML = "через телеграм";
+    } catch (_) {
+      window.location.href = "/accessError/";
+      // document.getElementById("test").innerHTML = "через сайт";
+    }
+  </script> -->
+</head>
+
+<body>
+  <div class="navbar" id="navbar"></div>
+  <div class="header" id="header"></div>
+
+  <div class="main">
+    <h1>Расписание</h1>
+    <div class="radio-input">
+      <label>
+        <input value="value-1" name="value-radio" id="value-1" type="radio" checked="true" />
+        <p>Предстоящие</p>
+      </label>
+      <label>
+        <input value="value-2" name="value-radio" id="value-2" type="radio" />
+        <p>Прошедшие</p>
+      </label>
+      <span class="selection"></span>
+    </div>
+    <button id="goToItems" class="classHide">Записаться на занятие</button>
+    <div id="innerNextLesson"></div>
+    <div id="innerPrevLesson" class="classHide"></div>
+    <button class="loadMoreNext classHide">Показать еще</button>
+    <button class="loadMorePrev classHide">Показать еще</button>
+    <div style="margin-bottom: 40px"></div>
+  </div>
+
+  <div class="referrer" id="moveLesson">
+    <form class="bPopupContent" id="moveLessonForm">
+      <div class="flex">
+        <img src="" alt="close" id="closeMoveLessonBtn" />
+      </div>
+      <h1>Перенести занятие</h1>
+      <h3 id="hLessonName"></h3>
+      <input class="pa__middle-input" type="date" name="date" placeholder="Желаемая дата"
+        onchange="this.className=(this.value!=''?'has-value':'')" required />
+      <input type="text" placeholder="Комментарий" name="comment" />
+      <button type="submit" id="sendFormBtn">Оставить заявку</button>
+    </form>
+  </div>
+
+  <div id="firstReferrer" class="referrer">
+    <div class="bPopupContent">
+      <div class="flex">
+        <img src="" alt="close" id="closeCalendarButton" />
+      </div>
+      <div class="calendarField" id="googleButton">
+        <img src="" alt="google" id="google" />
+        <h3>Google Календарь</h3>
+      </div>
+      <div class="calendarField" id="yandexButton">
+        <img src="" alt="yandex" id="yandex" />
+        <h3>Яндекс Календарь</h3>
+      </div>
+    </div>
+  </div>
+
+  <div id="referrer" class="referrer">
+    <div class="bPopupContent classHide" id="secondModal">
+      <div class="flex">
+        <img src="" alt="close" class="btn-close" id="closeBtn1" />
+      </div>
+      <h1>Отменить занятие?</h1>
+      <p id="payFullCancel">Отмена</p>
+      <button class="nextModalButton">Да, отменить занятие</button>
+      <!-- <div class="inlineButton">
+          <button class="goToMove">Перенести</button> -->
+      <button class="close">Не отменять</button>
+      <!-- </div> -->
+    </div>
+    <div class="bPopupContent classHide" id="thirdModal">
+      <div class="flex">
+        <img src="" alt="close" class="btn-close" id="closeBtn2" />
+      </div>
+      <div class="ellipse">
+        <img src="" alt="check2" id="check2" />
+      </div>
+      <h1 id="innerAnotherDate"></h1>
+      <button id="cancelLesson">Отлично</button>
+    </div>
+  </div>
+
+  <div class="alertPopUp">
+    <!-- <div class="windowPopContent">
+          <p>Сообщение отправленно</p>
+        </div> -->
+  </div>
+
+  <div id="lateLessonReferrer" class="referrer">
+    <div class="bPopupContent">
+      <div class="flex">
+        <img src="" alt="close" id="closeLateLesson" />
+      </div>
+      <h1 style="margin-bottom: 10px">Вы действительно опаздываете?</h1>
+      <p>Педагог будет ждать 10 минут, после занятие будет отменено.</p>
+      <button id="sendLateMess">Да, опаздываю</button>
+      <button id="closeLatePop">Нет</button>
+    </div>
+  </div>
+
+  <div id="secondReferrer" class="referrer">
+    <div class="bPopupContent">
+      <div class="flex">
+        <img src="" alt="close" id="closeReportTeacherButton" />
+      </div>
+      <p id="reportFromTeacher"></p>
+    </div>
+  </div>
+  <div class="reportAboutLesson classHide">
+    <div class="aboutHeader">
+      <p>Занятие с CareMyBaby</p>
+      <h1 id="reportAboutData"></h1>
+      <div class="reportButton">
+        <img src="" id="fileText" alt="fileText" />
+        <p id="showTeacherReport" class="link">Отчет о занятии</p>
+      </div>
+    </div>
+
+    <div class="inlineAbout">
+      <div class="aboutFlex">
+        <p>Длительность</p>
+        <p class="selfInput" id="reportAboutDuration"></p>
+      </div>
+      <div class="aboutFlex">
+        <p>Стоимость</p>
+        <div class="inlineStrign">
+          <p class="selfInput" id="reportAboutCost"></p>
+          <p class="reportAboutCostSale"></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="aboutFlex">
+      <p>Направление</p>
+      <p class="selfInput" id="reportAboutLessonName"></p>
+    </div>
+    <div class="aboutFlex">
+      <p>Педагог</p>
+      <p class="selfInput" id="reportAboutTeacher"></p>
+    </div>
+    <!-- <div class="linkToTeacher">
+            <p>Связаться с педагогом</p>
+            <img src="/image/chat-dots.svg" />
+          </div> -->
+
+    <h2 class="thanks classHide">Спасибо за ваш отзыв!</h2>
+    <form id="feadbackForm" class="classHide">
+      <p id="feadBackContainer">Как прошел урок?</p>
+      <div class="rating">
+        <input type="radio" id="star5" name="feedback_mark" value="5" class="allInput" />
+        <label for="star5" class="allRadio"></label>
+        <input type="radio" id="star4" name="feedback_mark" value="4" class="allInput" />
+        <label for="star4" class="allRadio"></label>
+        <input type="radio" id="star3" name="feedback_mark" value="3" class="allInput" />
+        <label for="star3" class="allRadio"></label>
+        <input type="radio" id="star2" name="feedback_mark" value="2" class="allInput" />
+        <label for="star2" class="allRadio"></label>
+        <input type="radio" id="star1" name="feedback_mark" value="1" class="allInput" />
+        <label for="star1" class="allRadio"></label>
+      </div>
+      <div class="favor classHide">
+        <p>Что понравилось больше всего?</p>
+        <div class="slideBar">
+          <div class="icon">
+            <input type="checkbox" class="favIcon" name="good_atmosphere" value="true" id="checkbox1" />
+            <label for="checkbox2" class="tooltip"></label>
+            <label class="tooltip" for="checkbox1">Атмосфера на уроке</label>
+          </div>
+          <div class="icon">
+            <input type="checkbox" class="favIcon" name="bright_teacher" value="true" id="checkbox2" />
+            <label for="checkbox2" class="tooltip"></label>
+            <label class="tooltip" for="checkbox2">Яркий педагог</label>
+          </div>
+          <div class="icon">
+            <input type="checkbox" class="favIcon" name="interesting_theme" value="true" id="checkbox3" />
+            <label for="checkbox3" class="tooltip"></label>
+            <label class="tooltip" for="checkbox3">Интересная тема</label>
+          </div>
+          <div class="icon">
+            <input type="checkbox" class="favIcon" name="happy_child" value="true" id="checkbox4" />
+            <label for="checkbox4" class="tooltip"></label>
+            <label class="tooltip" for="checkbox4">Счастливый ребёнок</label>
+          </div>
+        </div>
+      </div>
+      <div id="textArea" class="classHide">
+        <textarea form="feadbackForm" id="textFeadBack" required placeholder="Расскажите как все прошло"
+          name="feedback_text"></textarea>
+      </div>
+    </form>
+  </div>
+  <div class="preloader">
+    <div class="loader"></div>
+  </div>
+</body>
+
+</html>
