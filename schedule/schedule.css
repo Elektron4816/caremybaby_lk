@@ -1,0 +1,579 @@
+.main {
+  border-radius: 30px 30px 0 0;
+}
+
+.header {
+  display: flex;
+}
+
+#schedule > label {
+  color: #ee7a45;
+}
+
+.radio-input input {
+  display: none;
+}
+
+.radio-input {
+  --container_width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-radius: 30px;
+  background-color: #fffbf4;
+  color: #000000;
+  width: var(--container_width);
+  height: 42px;
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+
+.radio-input label {
+  width: 100%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.selection {
+  display: none;
+  position: absolute;
+  height: 100%;
+  width: calc(var(--container_width) / 2);
+  z-index: 0;
+  left: 0;
+  top: 0;
+  transition: 0.25s ease;
+  border-radius: 30px;
+}
+
+.radio-input > label > p {
+  margin: 0;
+}
+
+.radio-input label:has(input:checked) > p {
+  color: #ffffff;
+}
+
+.radio-input label:has(input:checked) ~ .selection {
+  background-color: #ee7a45;
+  display: inline-block;
+}
+
+.radio-input label:nth-child(1):has(input:checked) ~ .selection {
+  transform: translateX(calc(var(--container_width) * 0 / 2));
+}
+
+.radio-input label:nth-child(2):has(input:checked) ~ .selection {
+  transform: translateX(calc(var(--container_width)));
+}
+
+.shedule {
+  /* width: 90; */
+  /* height: 156px; */
+  background-color: #fffbf4;
+  border-radius: 20px;
+  padding: 24px;
+  margin-bottom: 15px;
+}
+
+.shedule > button {
+  margin-bottom: 25px;
+}
+
+.scheduleAboutPrev {
+  cursor: pointer;
+}
+
+.scheduleAboutPrev,
+.scheduleAboutNext {
+  border-left: 2px solid #ee7a45;
+  padding-left: 10px;
+}
+
+.scheduleAboutNext {
+  margin-bottom: 24px;
+}
+
+.scheduleDate {
+  margin-bottom: 4px;
+}
+
+.scheduleCircel {
+  width: 40px;
+  height: 40px;
+  border-radius: 30px;
+  background-color: #f5f0e7;
+}
+
+.twoButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.twoButton > button {
+  height: 40px;
+  background-color: #f5f0e7;
+  color: #484848;
+  font-family: "Gilroy-SemiBold";
+}
+
+.leftButton {
+  margin-right: 10px;
+}
+
+.classHide {
+  display: none;
+}
+
+.footerline {
+  display: flex;
+}
+
+.footerline > p {
+  margin: 0;
+  color: #080808;
+  cursor: pointer;
+}
+
+.footerline > img {
+  margin-right: 7px;
+}
+
+.hrl {
+  border-bottom: 1px solid #e5dfd6;
+  margin: 16px 0 16px 0;
+}
+
+.classCopy > button {
+  margin-bottom: 25px;
+}
+
+.foo {
+  display: flex;
+  justify-content: space-between;
+}
+
+.foo > p {
+  margin: 0;
+  color: #ee7a45;
+  border-bottom: 1px solid #ee7a45;
+  font-size: 12px;
+}
+
+.flex {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.ellipse {
+  width: 25px;
+  height: 25px;
+  border: 1px solid #ee7a45;
+  background-color: #fce1d1;
+  border-radius: 20px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ellipse > img {
+  width: 16px;
+  height: 16px;
+}
+
+.btn-close {
+  width: max-content;
+  /* transform: translate(10px, -20px);
+    border-radius: 50%; */
+  margin: 0;
+  cursor: pointer;
+}
+
+.close,
+.goToMove {
+  background-color: #fffbf4;
+  color: #000000;
+}
+
+.close:hover,
+.goToMove:hover {
+  background-color: #fffbff;
+}
+
+#payFullCancel {
+  margin-bottom: 22px;
+}
+
+.reportAboutLesson {
+  margin-bottom: 50px;
+  background-color: #f5f0e7;
+  padding: 20px;
+  /* min-height: 550px; */
+}
+
+.aboutFlex {
+  margin: 0 70px 25px 0;
+}
+
+.aboutFlex > p {
+  margin: 0;
+}
+
+.reportButton {
+  display: flex;
+}
+
+.aboutHeader {
+  margin-bottom: 40px;
+}
+
+.selfInput {
+  font-family: "Gilroy-Bold";
+}
+
+.reportButton > p {
+  color: #ee7a45;
+  cursor: pointer;
+}
+
+.reportButton > img {
+  margin-right: 4px;
+}
+
+.inlineAbout {
+  display: flex;
+}
+
+.linkToTeacher {
+  padding: 14px 20px 14px 20px;
+  border-radius: 13px;
+  background-color: #fffbf4;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
+  cursor: pointer;
+}
+
+.linkToTeacher > p {
+  margin: 0;
+}
+
+.rating {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row-reverse;
+  margin-bottom: 33px;
+}
+
+.rating:not(:checked) > input {
+  position: absolute;
+  appearance: none;
+  background-color: #f5f0e7;
+}
+
+.allRadio {
+  margin-top: 15px;
+}
+
+.rating:not(:checked) > label {
+  float: right;
+  cursor: pointer;
+  font-size: 40px;
+  color: #dbceb7;
+}
+
+.rating:not(:checked) > label:before {
+  content: "★";
+}
+
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+  color: #f4c664;
+}
+
+.rating > input:checked ~ label {
+  color: #f4c664;
+}
+
+textarea {
+  width: 92%;
+  border: none;
+  margin-bottom: 10px;
+  padding: 18px 4% 18px 4%;
+  border-radius: 12px;
+  background-color: #fffbf4;
+  outline: none;
+  overflow: hidden;
+}
+
+.thanks {
+  text-align: center;
+  font-family: "Gilroy-SemiBold";
+  height: 150px;
+}
+
+.slideBar {
+  margin: 20px 0 0 0;
+  display: flex;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  margin-bottom: 24px;
+}
+
+/* .slideBar::-webkit-scrollbar {
+  display: none;
+} */
+
+.icon {
+  border-radius: 12px;
+  flex: none;
+  scroll-snap-align: start;
+  width: 77px;
+  height: 74px;
+  padding: 8px 6px 7px 6px;
+  margin-right: 11px;
+  line-height: 13px;
+  background-color: #fffbf4;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-end;
+  justify-content: center;
+}
+
+.icon > input {
+  margin-bottom: 7px;
+}
+
+#checkbox1 {
+  min-width: 50px;
+  min-height: 41px;
+}
+
+#checkbox2 {
+  min-width: 41px;
+  min-height: 41px;
+}
+
+#checkbox3 {
+  min-width: 55px;
+  min-height: 41px;
+}
+
+#checkbox4 {
+  min-width: 38px;
+  min-height: 41px;
+}
+
+.icon:not(:checked) > input {
+  /* position: absolute; */
+  appearance: none;
+}
+
+.icon > label {
+  cursor: pointer;
+}
+
+#checkbox1 {
+  content: url("../image/fromCheckBox/Group\ 158.svg");
+}
+
+#checkbox1:checked {
+  content: url("../image/fromCheckBox/Group\ 158-1.svg");
+}
+
+#checkbox2 {
+  content: url("../image/fromCheckBox/Group\ 150.svg");
+}
+
+#checkbox2:checked {
+  content: url("../image/fromCheckBox/Group\ 150-1.svg");
+}
+
+#checkbox3 {
+  content: url("../image/fromCheckBox/Group\ 159.svg");
+}
+
+#checkbox3:checked {
+  content: url("../image/fromCheckBox/Group\ 159-1.svg");
+}
+
+#checkbox4 {
+  content: url("../image/fromCheckBox/Group\ 153.svg");
+}
+
+#checkbox4:checked {
+  content: url("../image/fromCheckBox/Group\ 153-1.svg");
+}
+
+.calendarField {
+  background-color: #fffbf4;
+  padding: 12px 0 12px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 30px;
+  margin-top: 16px;
+}
+
+.calendarField > img {
+  margin-right: 8px;
+}
+
+#closeCalendarButton {
+  cursor: pointer;
+}
+
+#closeReportTeacherButton {
+  cursor: pointer;
+  margin-bottom: 8px;
+  position: absolute;
+}
+
+#reportFromTeacher {
+  margin-top: 24px;
+}
+
+input[type="date"] {
+  position: relative;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: auto;
+  height: auto;
+  color: transparent;
+  background: transparent;
+}
+
+input[type="date"]:not(.has-value):before {
+  content: attr(placeholder);
+  color: #6b6b6b;
+  width: 100%;
+}
+
+.bPopupContent > input {
+  margin-bottom: 8px;
+}
+
+.bPopupContent > button {
+  margin-top: 8px;
+}
+
+#closeLateLesson {
+  cursor: pointer;
+}
+
+#closeLatePop {
+  background-color: #fffbf4;
+  color: #000000;
+}
+
+#closeLatePop:hover {
+  background-color: #fffbff;
+}
+
+textarea {
+  resize: none;
+}
+
+#closeMoveLessonBtn {
+  cursor: pointer;
+}
+
+.link {
+  color: #ee7a45;
+}
+
+#hLessonName {
+  margin-bottom: 8px;
+}
+
+.inlineButton {
+  display: flex;
+}
+
+.goToMove {
+  margin-right: 5px;
+}
+
+.iti__selected-country:hover {
+  background-color: #000000;
+}
+
+.favIcon {
+  cursor: pointer;
+}
+
+.sale {
+  margin-bottom: 16px;
+  display: flex;
+  gap: 4px;
+}
+
+.saleItem {
+  background-color: #F5F0E7;
+  border-radius: 1000px;
+  padding: 6px 8px;
+  text-align: center;
+}
+
+.salePercentTitle, .saleCostPrice {
+  font-family: "Gilroy-SemiBold";
+  line-height: 12px;
+  font-size: 12px;
+}
+
+.salePercentItem {
+  color: #EE7A45;
+}
+
+.saleCostFull {
+  color: #9E9E9E;
+  text-decoration: line-through;
+}
+
+.freeLesson {
+  padding: 6px 8px;
+  background-color: #FFD170;
+  border-radius: 1000px;
+  width: max-content;
+  margin-bottom: 16px;
+}
+
+.freeLessonText {
+  font-family: "Gilroy-SemiBold";
+  line-height: 12px;
+}
+
+.reportAboutCostSale {
+  color: #9E9E9E;
+  text-decoration: line-through;
+}
+
+.inlineStrign {
+  display: flex;
+  gap: 4px;
+  width: max-content;
+}
+
+.bPopupContent {
+  width: 100%;
+  border-radius: 0;
+  max-height: none;
+  max-width: none;
+  margin: 0;
+  margin-bottom: 50px;
+}

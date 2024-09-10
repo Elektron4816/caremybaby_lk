@@ -1,0 +1,34 @@
+.link {
+  color: #ee7a45;
+}
+
+.btnBack {
+  margin-bottom: 24px;
+}
+
+.inlineBlock {
+  display: flex;
+  justify-content: center;
+}
+.inlineBlock > h1 {
+  margin: 0;
+}
+
+.inlineBlock > img {
+  margin-right: 8px;
+}
+
+.someText {
+  color: #6b6b6b;
+  margin: 8px 0 24px 0;
+}
+
+.main {
+  text-align: center;
+  min-height: max-content;
+  margin-top: 35vh;
+}
+
+body {
+  background-color: #f5f0e7;
+}

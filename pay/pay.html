@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <title>Баланс</title>
+  <!-- Yandex.Metrika counter -->
+  <script type="text/javascript">
+    (function (m, e, t, r, i, k, a) {
+      m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
+      m[i].l = 1 * new Date();
+      for (var j = 0; j < document.scripts.length; j++) { if (document.scripts[j].src === r) { return; } }
+      k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+    })
+      (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(97855669, "init", {
+      clickmap: true,
+      trackLinks: true,
+      accurateTrackBounce: true,
+      webvisor: true
+    });
+  </script>
+  <noscript>
+    <div><img src="https://mc.yandex.ru/watch/97855669" style="position:absolute; left:-9999px;" alt="" /></div>
+  </noscript>
+  <!-- /Yandex.Metrika counter -->
+
+  <!-- <script>
+      let tg = window.Telegram.WebApp;
+      try {
+        tg.initDataUnsafe.user.id;
+        // document.getElementById("test").innerHTML = "через телеграм";
+      } catch (_) {
+        window.location.href = "/accessError/";
+        // document.getElementById("test").innerHTML = "через сайт";
+      }
+    </script> -->
+</head>
+
+<body>
+  <div class="alertPopUp"></div>
+  <div class="navbar" id="navbar"></div>
+  <div class="header" id="header"></div>
+  <div class="main" id="mystate">
+    <h1>Баланс</h1>
+    <div class="bonusMain">
+      <div class="bonus">
+        <p class="bonusText">Бонусы</p>
+        <p class="link bonusHowGet" id="howGetLink"></p>
+      </div>
+      <div class="gift">
+        <div class="giftImage">
+          <img src="" id="gift" style="width: 12px; height: 12px" />
+        </div>
+        <h2 id="BodyBonus"></h2>
+      </div>
+    </div>
+    <div class="balanceMain">
+      <div class="balanceRub">
+        <div class="valute">
+          <p>Рубли</p>
+          <img src="" id="group" />
+        </div>
+        <div class="bodyValute">
+          <p id="displayBobyRub">0</p>
+          <p>₽</p>
+        </div>
+      </div>
+      <div class="balanceEuro">
+        <div class="valute">
+          <p>Евро</p>
+          <img src="" id="group1" />
+        </div>
+        <div class="bodyValute">
+          <p id="displayBodyEuro">0</p>
+          <p>€</p>
+        </div>
+      </div>
+    </div>
+    <button class="btn">Пополнить</button>
+    <h1>История операций</h1>
+    <div id="innerHistory"></div>
+    <button class="loadMore classHide">Показать еще</button>
+  </div>
+  <div id="referrer" class="referrer">
+    <div class="bPopupContent">
+      <div class="flex">
+        <img src="" alt="close" class="btn-close" id="closeBtn1" />
+      </div>
+      <h1>Пополнить баланс</h1>
+      <div class="classRadio">
+        <input id="typeRub" type="radio" name="valute" checked />
+        <label for="typeRub">Рубли</label>
+        <input id="typeEuro" type="radio" name="valute" />
+        <label for="typeEuro">Евро</label>
+      </div>
+      <input id="summ" type="number" min="1" name="MNT_AMOUNT" required placeholder="Сумма пополнения" />
+      <p id="errMess"></p>
+      <input type="email" placeholder="E-mail для отправки чека" name="MNT_CUSTOM3" id="userEmail"/>
+      <p id="errEmail"></p>
+      <input id="bonusInput" type="text" name="promoCode" placeholder="Промокод (если есть)" />
+      <p id="errMessBonus"></p>
+      <button id="sendPayment" type="submit">Перейти к оплате</button>
+    </div>
+  </div>
+  <div id="firstReferrer" class="referrer">
+    <div class="bPopupContent">
+      <div class="flex">
+        <img src="" id="closeBtn2" style="cursor: pointer" />
+      </div>
+      <h1>Как получить бонусы</h1>
+      <p>
+        Дарим до 3 000 ₽ на счет при оплате<br />
+        на 10&nbsp;000 — на счет получаете 11&nbsp;000 <br />
+        на 20&nbsp;000 — на счет получаете 22&nbsp;000 <br />
+        на 30&nbsp;000 — на счет получаете 33&nbsp;000<br />
+      </p>
+      <button id="closePopUpButton">Понятно</button>
+    </div>
+  </div>
+  <div class="preloader">
+    <div class="loader"></div>
+  </div>
+</body>
+
+</html>
