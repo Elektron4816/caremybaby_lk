@@ -52,6 +52,7 @@
     "webpack-dev-server": "^5.0.4"
   },
   "dependencies": {
+    "air-datepicker": "^3.5.3",
     "autosize": "^6.0.1",
     "axios": "^1.6.8",
     "body-parser": "^1.20.2",
@@ -67,6 +68,7 @@
     "http2": "^3.3.7",
     "iconv-lite": "^0.6.3",
     "intl-tel-input": "^23.0.4",
+    "js-base64": "^3.7.7",
     "logger": "^0.0.1",
     "mini-css-extract-plugin": "^2.9.0",
     "multer": "^1.4.5-lts.1",

@@ -284,3 +284,23 @@
 #userEmail {
   margin-top: 8px;
 }
+
+.inline-btn-pay-link {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+#close-pay-popup {
+  background-color: #fffbf4;
+  color: #313131;
+}
+
+#close-pay-popup:hover {
+  background-color: white;
+}
+
+#open-pay-link {
+  color: #ee7a45;
+}

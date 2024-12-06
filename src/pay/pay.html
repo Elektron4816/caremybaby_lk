@@ -80,7 +80,7 @@
         </div>
       </div>
     </div>
-    <button class="btn">Пополнить</button>
+    <button class="btn" disabled>Пополнить</button>
     <h1>История операций</h1>
     <div id="innerHistory"></div>
     <button class="loadMore classHide">Показать еще</button>
@@ -99,11 +99,29 @@
       </div>
       <input id="summ" type="number" min="1" name="MNT_AMOUNT" required placeholder="Сумма пополнения" />
       <p id="errMess"></p>
-      <input type="email" placeholder="E-mail для отправки чека" name="MNT_CUSTOM3" id="userEmail"/>
+      <input type="email" placeholder="E-mail для отправки чека" name="MNT_CUSTOM3" id="userEmail" />
       <p id="errEmail"></p>
       <input id="bonusInput" type="text" name="promoCode" placeholder="Промокод (если есть)" />
       <p id="errMessBonus"></p>
       <button id="sendPayment" type="submit">Перейти к оплате</button>
+    </div>
+  </div>
+  <div id="second-referrer" class="referrer">
+    <div class="bPopupContent">
+      <div class="flex">
+        <img src="" alt="close" class="btn-close" id="closeBtn3" />
+      </div>
+      <h1>Перенаправление...</h1>
+      <p>Вы будете перенаправлены на страницу оплаты в браузере.<br /><br />
+        Если этого не произошло автоматически, пожалуйста, перейдите по ссылке:<br /><br />
+        <a href="#" id="open-pay-link" target="_blank"></a>
+      </p>
+      <div class="inline-btn-pay-link">
+        <a href="#" id="open-pay-link-button" target="_blank"><button id="open-pay-link-button">Перейти к
+            оплате</button></a>
+        <button id="close-pay-popup">Закрыть</button>
+      </div>
+
     </div>
   </div>
   <div id="firstReferrer" class="referrer">

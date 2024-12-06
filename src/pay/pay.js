@@ -17,14 +17,15 @@ import group from "../image/Group 50.svg";
 import group1 from "../image/Group 51.svg";
 import closeBtn1 from "../image/Union.svg";
 
-import wallet1 from "../image/wallet2-1.svg";
+//import wallet1 from "../image/wallet2-1.svg";
 
 document.getElementById("gift").src = gift;
 document.getElementById("group").src = group;
 document.getElementById("group1").src = group1;
 document.getElementById("closeBtn1").src = closeBtn1;
 document.getElementById("closeBtn2").src = closeBtn1;
-document.getElementById("walletIcon").src = wallet1;
+document.getElementById("closeBtn3").src = closeBtn1;
+//document.getElementById("walletIcon").src = wallet1;
 
 const WebApp = window.Telegram.WebApp;
 
@@ -33,6 +34,8 @@ const amountBalanceButton = document.querySelector(".btn");
 const closeBalanceWindow = document.getElementById("referrer");
 
 const closePopoUp = document.getElementById("firstReferrer");
+
+const closePopUpPayLink = document.getElementById("second-referrer");
 
 const radioEuro = document.getElementById("typeEuro");
 const radioRuble = document.getElementById("typeRub");
@@ -45,6 +48,10 @@ const howGetButton = document.getElementById("howGetLink");
 const emailInput = document.getElementById("userEmail");
 
 let clientPhone = localStorage.getItem("phoneNumber");
+
+if (clientPhone === null || clientPhone === "n/a" || clientPhone === undefined) {
+  window.location.href = "/auth";
+}
 
 clientPhone = validNumberFromGet(clientPhone);
 
@@ -67,7 +74,12 @@ const closeBalanceWindowButton = document.getElementById("closeBtn1");
 const closePopoUpButton = document.getElementById("closeBtn2");
 const closePopoDownButton = document.getElementById("closePopUpButton");
 
+const closePopUpPayLinkButton = document.getElementById("close-pay-popup");
+const closePopUpButton = document.getElementById("closeBtn3");
+
 const takeBody = document.getElementsByTagName("body")[0];
+
+getMainClass.style.minHeight = `${window.innerHeight - 120}px`;
 
 amountBalanceButton.addEventListener("click", (e) => {
   e.preventDefault();
@@ -98,9 +110,26 @@ closePopoUp.addEventListener("click", (e) => {
   }
 });
 
+closePopUpPayLink.addEventListener("click", (e) => {
+  if (e.target.id === "second-referrer") {
+    takeBody.classList.remove("removeScrolling");
+    closePopUpPayLink.style.display = "none";
+  }
+});
+
 closePopoDownButton.addEventListener("click", () => {
   takeBody.classList.remove("removeScrolling");
   closePopoUp.style.display = "none";
+});
+
+closePopUpPayLinkButton.addEventListener("click", () => {
+  takeBody.classList.remove("removeScrolling");
+  closePopUpPayLink.style.display = "none";
+});
+
+closePopUpButton.addEventListener("click", () => {
+  takeBody.classList.remove("removeScrolling");
+  closePopUpPayLink.style.display = "none";
 });
 
 closeBalanceWindowButton.addEventListener("click", () => {
@@ -143,6 +172,7 @@ setTimeout(() => {
   })
     .then((response) => response.json())
     .then((data) => {
+      amountBalanceButton.disabled = false;
       if (data[0].deposit_id === null) {
         flagDeposit = true;
       }
@@ -217,9 +247,12 @@ sendPayment.addEventListener("click", (e) => {
     }
   }
 
-  getMainClass.style.filter = "blur(5px)";
-  closeBalanceWindow.style.filter = "blur(5px)";
-  displayPreloader.style.display = "flex";
+  // getMainClass.style.filter = "blur(5px)";
+  // closeBalanceWindow.style.filter = "blur(5px)";
+  // displayPreloader.style.display = "flex";
+
+  closePopUpPayLink.style.display = "flex";
+
   if (radioRuble.checked) {
     if (bonusInput.value.length > 0) {
       checkPromo((bool) => {
@@ -233,13 +266,13 @@ sendPayment.addEventListener("click", (e) => {
     // sendAmount();
   } else if (radioEuro.checked) {
     sendAmountEuro();
-    setTimeout(() => {
-      displayPreloader.style.display = "none";
-      getMainClass.style.filter = "";
-      closeBalanceWindow.style.filter = "";
-      closeBalanceWindow.style.display = "none";
-    }, 3000)
   }
+  // setTimeout(() => {
+  //   displayPreloader.style.display = "none";
+  //   getMainClass.style.filter = "";
+  //   closeBalanceWindow.style.filter = "";
+  closeBalanceWindow.style.display = "none";
+  // }, 3000)
   // closeBalanceWindow.style.display = "none";
   // closeBalanceWindow.style.filter = "";
   // getMainClass.style.filter = "";
@@ -344,25 +377,32 @@ const sendAmountRub = () => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      MNT_AMOUNT: parseFloat(amountInput.value),
+      amount: parseFloat(amountInput.value),
       bonus: bonusInput.value,
-      MNT_TRANSACTION_ID: cT,
-      MNT_CUSTOM3: emailInput.value,
+      // MNT_TRANSACTION_ID: cT,
+      email: emailInput.value,
       client: jsonClientObj,
     }),
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log(data);
-      // setTimeout(() => {
-      window.location.assign(
-        `https://moneta.ru/assistant.widget?version=v3&operationId=${data}&MNT_CUSTOM3=${emailInput.value}`,
-      );
-      // setTimeout(() => {
-      //   displayPreloader.style.display = "none";
-      //   getMainClass.style.filter = "";
-      // }, 2000);
-      // }, 1000);
+      console.info(data);
+      if (data.url != null) {
+        // const link = `https://pay.paygine.com/webapi/Purchase?sector=${data.sector}&id=${data.id}&signature=${data.signature}`;
+        WebApp.openLink(data.url[0]);
+        document.getElementById("open-pay-link").href = data.url[0];
+        document.getElementById("open-pay-link").innerText = data.url[0];
+        document.getElementById("open-pay-link-button").href = data.url[0];
+      } else {
+        getMainClass.style.filter = "none";
+        closeBalanceWindow.style.filter = "none";
+        displayPreloader.style.display = "none";
+        takeBody.classList.add("removeScrolling");
+        showAlert("Возникла ошибка попробуйте позднее!");
+        console.log("Ошибка при создании заказа", data);
+      }
+
+
     })
     .catch((err) => {
       console.log(err);

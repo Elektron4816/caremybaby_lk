@@ -1,0 +1,42 @@
+body {
+    background-color: white;
+    padding: 20px;
+}
+
+/* 
+#logo-img {
+    width: 188px;
+    height: 32px;
+} */
+
+textarea {
+    width: 100%;
+    border: 1px solid #D9D9D9;
+    padding: 18px 4% 18px 4%;
+    border-radius: 12px;
+    background-color: #fffbf4;
+    outline: none;
+    overflow: hidden;
+    resize: none;
+    box-sizing: border-box;
+}
+
+.disabel {
+    cursor: not-allowed;
+    background-color: lightgray;
+}
+.disabel:hover {
+    cursor: not-allowed;
+    background-color: gray;
+}
+
+#error-message {
+    margin-top: 12px;
+    margin-bottom: 12px;
+    text-align: end;
+}
+
+#check-length {
+    color: #999895;
+    font-size: 12px;
+}

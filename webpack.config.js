@@ -18,7 +18,9 @@ module.exports = {
     accessError: "./src/accessError/accessError.js",
     registration: "./src/registration/registration.js",
     teacher: "./src/teacher/teacher.js",
+    children: "./src/children/children.js",
     metrika: "./src/metrika/yandex_069a8d6659ffeea4.js",
+    yc_frame: "./src/yc_frame/yc_frame.js"
   },
   output: {
     path: __dirname + "/dist",
@@ -119,6 +121,16 @@ module.exports = {
       filename: "teacher/teacher.html",
       template: "./src/teacher/teacher.html",
       chunks: ["teacher"],
+    }),
+    new HtmlWebpackPlugin({
+      filename: "children/children.html",
+      template: "./src/children/children.html",
+      chunks: ["children"],
+    }),
+    new HtmlWebpackPlugin({
+      filename: "yc_frame/yc_frame.html",
+      template: "./src/yc_frame/yc_frame.html",
+      chunks: ["yc_frame"],
     }),
   ],
 

@@ -26,6 +26,7 @@ import calendar3 from "../image/scheduleIcon/calendar3.svg";
 import xLg from "../image/scheduleIcon/x-lg.svg";
 import calendarIcon1 from "../image/calendar-week-1.svg"
 
+
 document.getElementById("closeMoveLessonBtn").src = union;
 document.getElementById("closeCalendarButton").src = union;
 document.getElementById("closeBtn1").src = union;
@@ -37,6 +38,7 @@ document.getElementById("fileText").src = fileText;
 document.getElementById("google").src = google;
 document.getElementById("yandex").src = yandex;
 document.getElementById("calendarIcon").src = calendarIcon1;
+
 
 const clientGroupId = localStorage.getItem("clientGroupId");
 let phoneClient = localStorage.getItem("phoneNumber");
@@ -155,6 +157,7 @@ fetch("/prevlessons", {
     // if (Object.keys(data).length === 0) {
     //   goToItems.classList.remove("classHide");
     // }
+    console.info(data);
     if (data.length >= 5 && !radioNext.checked) {
       loadMorePrevButton.classList.remove("classHide");
     }
@@ -283,7 +286,7 @@ const displayAllPrevLesson = (lesson, data) => {
         });
       let costWithSale = 0;
 
-      if (lesson[i].discount !== "0") {
+      if (lesson[i].discount !== "0" && lesson[i].discount !== "100") {
         let result = lesson[i].cost_full * lesson[i].amount;
         innerCostSale.innerText = `${parseFloat(result.toFixed(2))} ${valute}`;
       }
@@ -320,6 +323,7 @@ const displayAllPrevLesson = (lesson, data) => {
     });
   }
 
+
   WebApp.BackButton.onClick(function () {
     closeReportTeacherButton.click();
     innerCostSale.innerText = "";
@@ -340,6 +344,52 @@ const displayAllPrevLesson = (lesson, data) => {
     WebApp.BackButton.hide();
   });
 };
+
+
+fetch("https://crm.caremybaby.ru/Remotes/lk__getPoint_jheYEG3")
+  .then((response) => response.json())
+  .then((data) => {
+    console.info(data);
+    displayLikePoint(data, () => {
+      changeIcon(data);
+    });
+  })
+  .catch((error) => console.log("Error:", error));
+
+const displayLikePoint = (data, calback) => {
+  let myClass = "icon visible"
+  let status = "positive"
+  const innerFavIcon = document.querySelector(".slideBar");
+  data.forEach((item, index) => {
+    if (!item.positive) {
+      myClass = "icon";
+      status = "negative";
+    }
+    innerFavIcon.innerHTML += `          
+    <div class="${myClass}" data-status="${status}">
+      <input type="checkbox" class="favIcon" name="${item.name}" value="true" id="checkbox${index}" />
+      <label for="checkbox${index}" class="tooltip"></label>
+      <label class="tooltip" for="checkbox${index}">${item.title}</label>
+    </div>`
+  })
+  if (calback) {
+    calback();
+  }
+}
+
+const changeIcon = (data) => {
+  const allCheckboxInput = document.querySelectorAll(".favIcon");
+  allCheckboxInput.forEach((item, index) => {
+    item.style.content = `url(${data[index].inactive_icon})`;
+    item.addEventListener("click", () => {
+      if (item.checked) {
+        item.style.content = `url(${data[index].active_icon})`;
+      } else {
+        item.style.content = `url(${data[index].inactive_icon})`;
+      }
+    })
+  })
+}
 
 const getSaleContainer = (discount, cost_full, client_valute) => {
   let saleContainer = "";
@@ -425,11 +475,11 @@ const displayAllNextLesson = (lesson, data) => {
           <img src="${calendar3}" alt="calendar"/>
           <p class="addToCalendar">Добавить в календарь</p>
         </div>
-      <!--  <div class="hrl"></div>
+      <div class="hrl"></div>
         <div class="footerline">
           <img src="${xLg}" />
           <p style="color: #FF513A;" class="cancelLesson">Отменить занятие</p>
-        </div> -->
+        </div>
       </div>
     </div>`;
     },
@@ -642,25 +692,25 @@ function displayModalWindow(lesson) {
 
   let secondJ;
   // ---- потом убрать и раскоментировать строки ниже
-  for (let i = 0; i < takeAllCopyClass.length; i++) {
-    if (lesson[i].client_valute !== "руб") {
-      valute = "€";
-    }
+  // for (let i = 0; i < takeAllCopyClass.length; i++) {
+  //   if (lesson[i].client_valute !== "руб") {
+  //     valute = "€";
+  //   }
 
-    let dateLessonCheckZoom = new GetLessonDate(
-      lesson[i].lesson_date_for_js,
-    ).returnDate();
+  //   let dateLessonCheckZoom = new GetLessonDate(
+  //     lesson[i].lesson_date_for_js,
+  //   ).returnDate();
 
-    dateLessonCheckZoom.setHours(dateLessonCheckZoom.getHours() - 2);
-    const comparseDate = dateLessonCheckZoom.getTime();
-    if (nowDate <= comparseDate) {
-      takeAllCopyClass[i].classList.add("classHide");
-    }
-  }
+  //   dateLessonCheckZoom.setHours(dateLessonCheckZoom.getHours() - 2);
+  //   const comparseDate = dateLessonCheckZoom.getTime();
+  //   if (nowDate <= comparseDate) {
+  //     takeAllCopyClass[i].classList.add("classHide");
+  //   }
+  // }
 
   //--- 
 
-/*
+
   for (let i = 0; i < AllcancelLessonButton.length; i++) {
     if (lesson[i].client_valute !== "руб") {
       valute = "€";
@@ -704,7 +754,6 @@ function displayModalWindow(lesson) {
     });
 
   }
-  */
 
   function closeModal() {
     takeBody.classList.remove("removeScrolling");
@@ -744,7 +793,7 @@ function displayModalWindow(lesson) {
 
   AllNextModalButton.addEventListener("click", () => {
 
-    getActionCancelLesson(lesson[secondJ], innerAnotherDate, AllScheduleDate[secondJ], () => {
+    getActionCancelLesson(lesson[secondJ].resource_id, innerAnotherDate, AllScheduleDate[secondJ], () => {
       displayPreloader.style.display = "none";
       getMainClass.style.filter = "none";
       secondModal.style.filter = "none";
@@ -765,11 +814,20 @@ function getTextCancelLesson(req, string, callback) {
     },
     body: JSON.stringify({
       resourceId: req,
+      client_id: clientYcId
     }),
   })
-    .then((res) => res.text())
+    .then((res) => res.json())
     .then((data) => {
-      string.innerHTML = data.slice(1, data.length - 1);
+      console.log("text", data);
+      string.innerHTML = data.text;
+      if (data.cost == "-1") {
+        document.querySelector(".nextModalButton").style.display = "none";
+        document.querySelector(".close").innerText = "Закрыть";
+      } else {
+        document.querySelector(".nextModalButton").style.display = "block";
+        document.querySelector(".close").innerText = "Не отменять";
+      }
       if (callback) {
         callback(data);
       }
@@ -789,13 +847,13 @@ function getActionCancelLesson(req, string, string2, callback) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      lesson: req,
-      client: clientJson,
+      resourceId: req,
+      client_id: clientYcId,
     }),
   })
     .then((res) => res.json())
     .then((data) => {
-      console.info(data);
+      console.info("action", data);
 
       if (data == "204") {
         string.innerText = `Занятие «${string2.innerText}» успешно отменено`;
@@ -953,6 +1011,24 @@ for (let i = 0; i < AllStars.length; i++) {
     hidenTextArea.classList.remove("classHide");
     optionSlideBarry.classList.remove("classHide");
     sendFeadBackRating = allInput[i].value;
+
+    // if (allInput[i].value <= 3) {
+    //   document.querySelectorAll(".icon").forEach(item => {
+    //     if (item.getAttribute("data-status") == "negative") {
+    //       item.classList.add("visible");
+    //     } else {
+    //       item.classList.remove("visible");
+    //     }
+    //   })
+    // } else {
+      document.querySelectorAll(".icon").forEach(item => {
+        if (item.getAttribute("data-status") == "negative") {
+          item.classList.remove("visible");
+        } else {
+          item.classList.add("visible");
+        }
+      })
+    //}
 
     setTimeout(() => {
       window.scrollBy(0, 300);

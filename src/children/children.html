@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function (m, e, t, r, i, k, a) {
+            m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
+            m[i].l = 1 * new Date();
+            for (var j = 0; j < document.scripts.length; j++) { if (document.scripts[j].src === r) { return; } }
+            k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+        })
+            (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        ym(97855669, "init", {
+            clickmap: true,
+            trackLinks: true,
+            accurateTrackBounce: true,
+            webvisor: true
+        });
+    </script>
+    <noscript>
+        <div><img src="https://mc.yandex.ru/watch/97855669" style="position:absolute; left:-9999px;" alt="" /></div>
+    </noscript>
+    <!-- /Yandex.Metrika counter -->
+
+    <!-- <script>
+    let tg = window.Telegram.WebApp;
+    try {
+      tg.initDataUnsafe.user.id;
+      // document.getElementById("test").innerHTML = "через телеграм";
+    } catch (_) {
+      window.location.href = "/accessError/";
+      // document.getElementById("test").innerHTML = "через сайт";
+    }
+  </script> -->
+</head>
+
+<body>
+    <div class="header" id="header"></div>
+    <div class="container">
+        <div class="main">
+            <h1 class="main-title hide">Мои дети</h1>
+            <div class="child-container">
+                <div class="child-container-items">
+                    <div class="classHide" id="data-child-empty">
+                        <p style="margin-bottom: 16px;">Список пока пуст</p>
+                        <p>Для добавления данных обратитесь к вашему координатору</p>
+                    </div>
+                </div>
+                <div class="child-container-about classHide">
+                    <div class="child-container-about-content">
+                        <div class="child-container-about-head">
+                            <div class="child-container-about-head-avatar">
+                                <div class="child-container-about-head-img">
+                                    <img src="" alt="emoji" id="hamtest" name="bunny" data-origin="bunny" />
+                                </div>
+                                <div class="child-container-about-head-change-img">
+                                    <img src="" alt="smile" id="smile" />
+                                </div>
+                            </div>
+
+                            <div class="name-container">
+                                <!-- <input type="text" id="child-name" disabled />
+                                <img src="" alt="pencil" id="change-name" /> -->
+                                <label for="child-name" class="inp">
+                                    <input type="text" id="child-name" placeholder="&nbsp;" />
+                                    <span class="label">Имя ребенка</span>
+                                </label>
+                            </div>
+
+
+                        </div>
+                        <h2>О ребёнке</h2>
+                        <label for="date-input" class="inp">
+                            <input type="text" id="date-input" placeholder="&nbsp;" />
+                            <span class="label">Дата рождения</span>
+                        </label>
+                        <div class="innerPrefer">
+                            <div>
+                                <div class="text-aria-container">
+                                    <p class="placeholder">Что любит/не любит, увлечения, как ласково назвать ребенка и
+                                        т.д.</p>
+                                    <textarea class="text-aria" id="favour-area" name="favour-area"></textarea>
+                                </div>
+                                <div id="error-message">
+                                    <p id="check-length"><span id="input-count">0</span> / 255</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="wheel-balance">
+                            <h2>Колесо баланса</h2>
+                            <div class="wheel-balance-content">
+                                <h2>Раздел пока в разработке :(</h2>
+                                <p>Скоро здесь появится колесо баланса вашего ребенка. Можно будет отслеживать прогресс
+                                    обучения и наблюдать за успехами малыша</p>
+                                <img src="" alt="wheel" id="wheel" />
+                            </div>
+
+                        </div>
+                        <button id="send-child-info">Сохранить</button>
+                    </div>
+                    <div class="child-container-about-emoji-store classHide">
+                        <h1>Выберете фото профиля</h1>
+                        <div class="emoji-store-items"></div>
+                        <button id="apply-emoji">Применить</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="navbar" id="navbar"></div>
+        <div class="alertPopUp"></div>
+        <div class="confirm-change referrer" id="change-popup">
+            <div class="confirm-change-content bPopupContent">
+                <div class="close-img">
+                    <img src="" alt="close" id="closePopUp" />
+                </div>
+                <h2>Сохранить измененные данные?</h2>
+                <div class="inline-button">
+                    <button id="accept-change">Сохранить</button>
+                    <button id="cancel-change">Уйти</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>

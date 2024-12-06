@@ -3,8 +3,8 @@
 }
 
 #showFrame {
-   padding: 0;
-   /* margin-bottom: 30px; */
+    padding: 0;
+    /* margin-bottom: 30px; */
 }
 
 .insertTeacher {
@@ -19,3 +19,7 @@
     cursor: pointer;
     margin-bottom: 10px;
 }
+
+/* #isFrame {
+    border-radius: 30px 30px 0 0;
+} */

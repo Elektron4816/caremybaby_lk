@@ -117,8 +117,12 @@
       <h1>Записаться на бесплатный пробный урок</h1>
       <h3 class="innerNameLesson" id="nameLessonAuthTrial"></h3>
       <!-- <input type="datetime-local" placeholder="Желаемая дата" /> -->
-      <input class="pa__middle-input text" type="date" name="date" placeholder="Желаемая дата"
-        onchange="this.className=(this.value!=''?'has-value':'')" required />
+      <!-- <input class="pa__middle-input text" type="date" name="date" placeholder="Желаемая дата"
+        onchange="this.className=(this.value!=''?'has-value':'')" required /> -->
+        <label for="date-input-1" class="inp">
+          <input type="text" id="date-input-1" class="date-input" placeholder="&nbsp;" required/>
+          <span class="label">Желаемая дата</span>
+      </label>
       <input type="text" placeholder="Имя ребенка" name="childName" required />
       <input type="tel" name="phoneNumber" id="requiredNumber2" class="numberPhone" />
       <p class="errMsg" id="errMsg2"></p>
@@ -135,8 +139,12 @@
       <h1>Записаться на бесплатный пробный урок</h1>
       <h3 class="innerNameLesson" id="lessonAuthClient"></h3>
       <!-- <input type="datetime-local" placeholder="Желаемая дата" /> -->
-      <input class="pa__middle-input text" type="date" name="date" placeholder="Желаемая дата"
-        onchange="this.className=(this.value!=''?'has-value':'')" required />
+      <!-- <input class="pa__middle-input text" type="date" name="date" placeholder="Желаемая дата"
+        onchange="this.className=(this.value!=''?'has-value':'')" required /> -->
+        <label for="date-input-2" class="inp">
+          <input type="text" id="date-input-2" class="date-input" placeholder="&nbsp;" required/>
+          <span class="label">Желаемая дата</span>
+      </label>
       <select name="timesOfDay" class="MyInput">
         <!--Supplement an id here instead of using 'name'-->
         <option value="--" selected>Желаемое время</option>

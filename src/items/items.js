@@ -1,3 +1,4 @@
+import 'air-datepicker/air-datepicker.css';
 import "../index.css";
 import "./items.css";
 
@@ -7,6 +8,7 @@ import "../component/Header.js";
 import "../component/fixConsoleLog.js";
 import "../component/displayBalance.js";
 import "../component/checkAuth.js";
+import AirDatepicker from 'air-datepicker';
 
 import { validNumberFromGet, showAlert } from "../component/functionFromExport";
 
@@ -470,3 +472,16 @@ if (
 } else {
   console.log("desktop");
 }
+
+
+new AirDatepicker('#date-input-1', {
+  buttons: ['clear'],
+  isMobile: true,
+  autoClose: true,
+});
+
+new AirDatepicker('#date-input-2', {
+  buttons: ['clear'],
+  isMobile: true,
+  autoClose: true,
+});

@@ -44,6 +44,7 @@ if (PhoneCookie == null || PhoneCookie == "n/a") {
   }
   for (let i = 0; i < mainAll.length; i++) {
     mainAll[i].classList.add("addBorderRadius");
-    mainAll[i].style.minHeight = `${window.innerHeight - 120}px`;
+    mainAll[i].style.minHeight = `${window.innerHeight - 135}px`;
+    mainAll[i].setAttribute("data-height", window.innerHeight - 135);
   }
 }

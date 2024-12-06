@@ -1,19 +1,20 @@
 import house from "../image/house.svg";
-import wallet from "../image/wallet2.svg";
+//import wallet from "../image/wallet2.svg";
+import emoji from "../image/emoji-smile.svg";
 import calendar from "../image/calendar-week.svg";
 import mortarboard from "../image/mortarboard.svg";
 import threeDots from "../image/three-dots.svg";
 
 
-document.getElementById("navbar").innerHTML = 
-`<a class="tab" id="home" href="/">
+document.getElementById("navbar").innerHTML =
+    `<a class="tab" id="home" href="/">
 <img src="" alt="house" id="houseIcon" />
 <label for="home">Главная</label>
 </a>
-<a class="tab mButton" id="pay" href="/pay"
-><img src="" alt="wallet" id="walletIcon"/>
-<label for="pay">Баланс</label>
-</a>
+<a class="tab mButton" id="child" href="/children"
+><img src="" alt="emoji" id="emoji"/>
+<label for="emoji">Мои дети</label>
+</a> 
 <a class="tab mButton" id="schedule" href="/schedule"
 ><img src="" alt="calendar" id="calendarIcon"/>
 <label for="schedule">Расписание</label>
@@ -28,7 +29,18 @@ document.getElementById("navbar").innerHTML =
 </a>`;
 
 document.getElementById("houseIcon").src = house;
-document.getElementById("walletIcon").src = wallet;
+//document.getElementById("walletIcon").src = wallet;
 document.getElementById("calendarIcon").src = calendar;
 document.getElementById("mortarboardIcon").src = mortarboard;
 document.getElementById("threeDotsIcon").src = threeDots;
+document.getElementById("emoji").src = emoji;
+
+{/* <a class="tab mButton" id="pay" href="/pay"
+><img src="" alt="wallet" id="walletIcon"/>
+<label for="pay">Баланс</label>
+</a> */}
+
+{/* <a class="tab mButton" id="child" href="/children"
+><img src="" alt="emoji" id="emoji"/>
+<label for="emoji">Мои дети</label>
+</a> */}

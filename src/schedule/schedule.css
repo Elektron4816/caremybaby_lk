@@ -342,7 +342,7 @@ textarea {
   line-height: 13px;
   background-color: #fffbf4;
   text-align: center;
-  display: flex;
+  display: none;
   flex-wrap: wrap;
   align-content: flex-end;
   justify-content: center;
@@ -352,7 +352,15 @@ textarea {
   margin-bottom: 7px;
 }
 
-#checkbox1 {
+.visible {
+  display: flex;
+}
+
+.favIcon {
+  max-height: 41px;
+}
+
+/* #checkbox1 {
   min-width: 50px;
   min-height: 41px;
 }
@@ -372,6 +380,16 @@ textarea {
   min-height: 41px;
 }
 
+#checkbox5 {
+  max-width: 41px;
+  max-height: 41px;
+}
+
+#checkbox6 {
+  max-width: 41px;
+  max-height: 41px;
+} */
+
 .icon:not(:checked) > input {
   /* position: absolute; */
   appearance: none;
@@ -381,7 +399,7 @@ textarea {
   cursor: pointer;
 }
 
-#checkbox1 {
+/* #checkbox1 {
   content: url("../image/fromCheckBox/Group\ 158.svg");
 }
 
@@ -395,9 +413,9 @@ textarea {
 
 #checkbox2:checked {
   content: url("../image/fromCheckBox/Group\ 150-1.svg");
-}
+} */
 
-#checkbox3 {
+/* #checkbox3 {
   content: url("../image/fromCheckBox/Group\ 159.svg");
 }
 
@@ -412,6 +430,14 @@ textarea {
 #checkbox4:checked {
   content: url("../image/fromCheckBox/Group\ 153-1.svg");
 }
+
+#checkbox6 {
+  content: url("../image/fromCheckBox/service-121.svg");
+}
+
+#checkbox6:checked {
+  content: url("../image/fromCheckBox/service-120.svg");
+} */
 
 .calendarField {
   background-color: #fffbf4;
@@ -569,7 +595,7 @@ textarea {
   width: max-content;
 }
 
-.bPopupContent {
+#secondReferrer > .bPopupContent {
   width: 100%;
   border-radius: 0;
   max-height: none;

@@ -15,7 +15,7 @@ import {
 import autosize from "/node_modules/autosize/src/autosize.js";
 
 import chevronRight from "../image/chevron-right.svg";
-import creditCard from "../image/credit-card-2-back.svg";
+//import creditCard from "../image/credit-card-2-back.svg";
 import insta from "../image/instagram.svg";
 import youtube from "../image/youtube.svg";
 import vk from "../image/vk.svg";
@@ -26,12 +26,15 @@ import threeDots from "../image/three-dots-1.svg";
 import chatDots from "../image/chat-dots-1.svg"
 import closeCrossRed from "../image/Subtract.svg";
 import gift from "../image/gift.svg";
+import mortarboard from "../image/mortarboard-white.svg";
+// import rulesIcon from "../image/rules-icon.svg";
 
 // import { send } from "process";
 
 document.getElementById("threeDotsIcon").src = threeDots;
 document.getElementById("chevronRight").src = chevronRight;
-document.getElementById("creditCard").src = creditCard;
+//document.getElementById("creditCard").src = creditCard;
+document.getElementById("mortaTeacher").src = mortarboard;
 document.getElementById("insta").src = insta;
 document.getElementById("youtube").src = youtube;
 document.getElementById("vk").src = vk;
@@ -40,9 +43,12 @@ document.getElementById("telegram").src = telegram;
 document.getElementById("chatDots").src = chatDots;
 document.getElementById("closeErrorBackButton").src = closeCross;
 document.getElementById("gift").src = gift;
+// document.getElementById("rules-icon").src = rulesIcon;
 
 let WebApp = window.Telegram.WebApp;
 WebApp.BackButton.hide();
+let chatId = WebApp.initDataUnsafe.user.id;
+//let chatId = "456072370";
 
 const showPopUpPromoButton = document.querySelector(".fieldPromo");
 const popUpPromo = document.getElementById("referrerPromo");
@@ -51,12 +57,21 @@ const closePromoButton = document.getElementById("closePromoButton");
 closePromoButton.src = closeCross;
 
 let storageClientPhone = localStorage.getItem("phoneNumber");
+//const frame = document.getElementById("rules-frame");
 
 let clientYcId = "";
+let botUser = "";
 
 let sendClient;
 
 const toSearch = location.search;
+
+// if (storageClientPhone != 'n/a' && (storageClientPhone != undefined || storageClientPhone != null)) {
+//   frame.style.height = `${window.innerHeight - 120}px`;
+//   frame.style.borderRadius = '30px 30px 0 0';
+// } else {
+//   frame.style.height = `${window.innerHeight - 50}px`;
+// }
 
 fetch(`/search${toSearch}`)
   .then((responce) => responce.json())
@@ -80,7 +95,7 @@ if (storageClientPhone !== null && storageClientPhone !== "n/a") {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ clientPhone: storageClientPhone }),
+      body: JSON.stringify({ clientPhone: storageClientPhone, chatId: chatId }),
     })
       .then((response) => response.json())
       .then((data) => {
@@ -90,6 +105,23 @@ if (storageClientPhone !== null && storageClientPhone !== "n/a") {
         bonusAmount.innerText = data[0].ref_bonuses;
         clientYcId = data[0].client_yc_id;
         copyPromo.innerText = data[0].referrer;
+        botUser = data[1];
+        console.log(botUser);
+      });
+  }, 200);
+} else {
+  setTimeout(() => {
+    fetch("/client", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ chatId: chatId }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        botUser = data[0];
+        console.log(botUser);
       });
   }, 200);
 }
@@ -110,13 +142,13 @@ closePromoButton.addEventListener("click", () => {
   popUpPromo.style.display = "none";
 });
 
-const innerPromoBanners = document.querySelector(".innerPromo");
+//const innerPromoBanners = document.querySelector(".innerPromo");
 
-fetch("/banners")
-  .then((res) => res.json())
-  .then((data) => {
-    displayBanners(data);
-  });
+// fetch("/banners")
+//   .then((res) => res.json())
+//   .then((data) => {
+//     displayBanners(data);
+//   });
 
 const displayBanners = (data) => {
   let innerP = "";
@@ -141,20 +173,28 @@ const displayBanners = (data) => {
   });
 };
 
-const openPromoMore = document.getElementById("pickPromo");
+//const openPromoMore = document.getElementById("pickPromo");
 const firstFieldMain = document.getElementById("firstMain");
-const secondFieldMain = document.getElementById("secondMain");
+//const secondFieldMain = document.getElementById("secondMain");
 
-openPromoMore.addEventListener("click", () => {
+// openPromoMore.addEventListener("click", () => {
+//   WebApp.BackButton.show();
+//   firstFieldMain.classList.add("classHide");
+//  // secondFieldMain.classList.remove("classHide");
+// });
+
+const goToCatalog = document.getElementById("pickTeacherPage");
+
+goToCatalog.addEventListener("click", () => {
+  window.location.href = "/teacher";
   WebApp.BackButton.show();
-  firstFieldMain.classList.add("classHide");
-  secondFieldMain.classList.remove("classHide");
-});
+})
 
 WebApp.BackButton.onClick(() => {
   firstFieldMain.classList.remove("classHide");
-  secondFieldMain.classList.add("classHide");
+  // secondFieldMain.classList.add("classHide");
   fourthMain.classList.add("classHide");
+  // fiveMain.classList.add("classHide");
   errMessForm.innerText = "";
   formForm.style.border = "none";
   WebApp.BackButton.hide();
@@ -203,7 +243,9 @@ if (!isInIframe) {
 
   fieldCopyPromo.addEventListener("click", function () {
     navigator.clipboard
-      .writeText(copyPromoText.innerText.replace(/\n/g, '') + ' ' + '\n\n' + copyPromo.innerText + '\n\n' + 'Присоединяйся!')
+      // .writeText(copyPromoText.innerText.replace(/\n/g, '') + ' ' + '\n\n' + copyPromo.innerText + '\n\n' + 'Присоединяйся!')
+      .writeText(copyPromo.innerText)
+
       .then(function () {
         showAlert("Скопировано");
       })
@@ -244,7 +286,8 @@ shareButton.addEventListener("click", async () => {
 
   const shareData = {
     // title: "CMB",
-    text: `Задача организации, в особенности же начало повседневной работы по формированию позиции позволяет выполнять важные задания по разработке существенных финансовых и административных условий. \n\n${textToCopy}\n\n Присоединяйтесь!`,
+    // text: `Задача организации, в особенности же начало повседневной работы по формированию позиции позволяет выполнять важные задания по разработке существенных финансовых и административных условий. \n\n${textToCopy}\n\n Присоединяйтесь!`,
+    text: textToCopy,
     // url: textToCopy,
   };
 
@@ -318,6 +361,8 @@ activPromo.addEventListener("click", () => {
 
 const fourthMain = document.getElementById("fourthMain");
 const showFourthMain = document.getElementById("anyFeadback");
+//const fiveMain = document.getElementById("fiveMain");
+const showFiveMain = document.getElementById("see-rules");
 
 const sendFeadBack = document.getElementById("sendFeadBack");
 const formForm = document.getElementById("message");
@@ -332,7 +377,19 @@ showFourthMain.addEventListener("click", () => {
   formForm.value = "";
 });
 
+// showFiveMain.addEventListener("click", () => {
+//   // const getUrl = `/itemsMetrika?location=main-feedback&object=open_main_feedback&source=another&client_id=${clientYcId}`
+//   // fetch(getUrl);
+//   WebApp.BackButton.show();
+//   firstFieldMain.classList.add("classHide");
+//   fiveMain.classList.remove("classHide");
+// });
+
 sendFeadBack.addEventListener("click", (e) => {
+
+  displayPreloader.style.display = "flex";
+  fourthMain.style.filter = "blur(5px)";
+  getMainClass.style.filter = "blur(5px)";
 
   const getUrl = `/itemsMetrika?location=main-feedback&object=send_main_feedback&source=another&client_id=${clientYcId}`
   fetch(getUrl);
@@ -365,11 +422,14 @@ sendFeadBack.addEventListener("click", (e) => {
       messege: sendObject,
       base64: "None",
       client: sendClient,
+      botUser: botUser,
     })
   })
     .then((response) => response.text())
     .then((data) => {
-
+      displayPreloader.style.display = "none";
+      fourthMain.style.filter = "none";
+      getMainClass.style.filter = "none";
       if (data === "success") {
         showAlert("Спасибо за отзыв!");
         document.getElementById("anyFeadbackForm").reset();

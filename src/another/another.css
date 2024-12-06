@@ -37,16 +37,21 @@
   justify-content: center;
 }
 
-/* .circleField > img {
-  display: flex;
-  justify-content: center;
-} */
+.circleField > img {
+  width: 20px;
+  /* height: 20px; */
+}
+
+#fiveMain {
+  padding: 0;
+}
 
 .field {
   background-color: #fffbf4;
   border-radius: 20px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 16px;
   margin-bottom: 8px;
   cursor: pointer;

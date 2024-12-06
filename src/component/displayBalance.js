@@ -77,7 +77,7 @@ function checkClientId(data) {
 
   if (cliendIdToLocal != nowLocalClientId) {
     localStorage.setItem("clientGroupId", cliendIdToLocal);
-    location.reload();
+    //location.reload();
   }
 }
 

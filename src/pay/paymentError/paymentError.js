@@ -34,3 +34,31 @@ try {
   }
   // document.getElementById("test").innerHTML = "через сайт";
 }
+
+
+function getQueryParams() {
+  const params = new URLSearchParams(window.location.search);
+  return {
+    transaction_id: params.get('id'),
+    operation: params.get('operation'),
+    reference: params.get('reference'),
+    code: params.get('code'),
+  };
+}
+
+const dataSuccess = getQueryParams();
+dataSuccess.status = "FAILURE";
+console.log(dataSuccess);
+
+fetch("/paymentStatus", {
+
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify(dataSuccess),
+})
+  .then(response => response.text())
+  .then(data => {
+    console.log(data);
+  })

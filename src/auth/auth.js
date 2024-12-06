@@ -216,6 +216,10 @@ const getClientFunc = (obj, callback) => {
         "clientGroupId",
         data[0].client_group_id_wout_letter,
       );
+      localStorage.setItem(
+        "_yc_id",
+        data[0].client_yc_id,
+      );
       if (callback) {
         callback(data);
       }

@@ -21,7 +21,9 @@ import group from "../image/Group 50.svg";
 import group1 from "../image/Group 51.svg";
 import closeBtn1 from "../image/Union.svg";
 import house1 from "../image/house-1.svg";
-import chatDots from "../image/chat-dots-1.svg"
+import chatDots from "../image/chat-dots-1.svg";
+import mortarboard from "../image/mortarboard-white.svg";
+import feadbackArrow from "../image/chevron-right-white.svg";
 
 
 document.getElementById("chevronRight").src = chevronRight;
@@ -32,6 +34,8 @@ document.getElementById("closeBtn1").src = closeBtn1;
 document.getElementById("houseIcon").src = house1;
 document.getElementById("chatDots").src = chatDots;
 document.getElementById("closeBtn2").src = closeBtn1;
+document.getElementById("mortaTeacher").src = mortarboard;
+document.getElementById("feadbackArrow").src = feadbackArrow;
 
 
 const clientGroupId = localStorage.getItem("clientGroupId");
@@ -75,6 +79,30 @@ if (clientGroupId != "n/a" && clientGroupId != undefined) {
     .catch((err) => {
       console.log(err);
     });
+
+    fetch("/prevlessons", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ clientGroupId: clientGroupId }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        displayNeedFeedback(data[0]);
+        console.info(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+}
+
+const displayNeedFeedback = (data) => {
+  const needFeedbackBlock = document.getElementById("linkToFeedback");
+  if (data.client_feedback == null) {
+    needFeedbackBlock.href = `/schedule?resource_id=${data.resource_id}`;
+    needFeedbackBlock.classList.remove("classHide");
+  }
 }
 
 let todayDate = new Date();
@@ -162,7 +190,6 @@ buttonName.addEventListener("click", () => {
 
 const displayMaterial = (data) => {
   const test = document.querySelectorAll(".openPopUp");
-
   for (let i = 0; i < test.length; i++) {
     test[i].addEventListener("click", () => {
       downLoad.setAttribute("href", data[i].url);
@@ -171,6 +198,11 @@ const displayMaterial = (data) => {
       nameMaterialPopUp.innerHTML = data[i].name;
       descriptionPopUp.innerHTML = data[i].about;
       zero.style.backgroundImage = `url(${data[i].src})`;
+      if (data[i].button == null) {
+        buttonName.style.display = "none";
+      } else {
+        buttonName.style.display = "inline-block";
+      }
       buttonName.innerHTML = data[i].button;
       const getUrl = `/itemsMetrika?location=main_materials&object=open-popup&material_name=${data[i].name}`;
       fetch(getUrl)
@@ -196,7 +228,7 @@ popUp.addEventListener("click", (e) => {
   }
 });
 
-const closePopUpButton = document.getElementById("closeBtn1");
+const closePopUpButton = document.querySelector(".close-container-btn");
 
 closePopUpButton.addEventListener("click", () => {
   takeBody.classList.remove("removeScrolling");
@@ -289,6 +321,11 @@ const checkFirstLesson = () => {
     .then((data) => {
       getStory();
       if (data.length > 0) {
+        localStorage.setItem(
+          "_yc_id",
+          data[0].client_yc_id,
+        );
+        
         clientObj = data;
         clientObj.type = "auth";
         console.info(clientObj);
@@ -309,7 +346,7 @@ const checkFirstLesson = () => {
           for (let i = 0; i < allRefBanners.length; i++) {
             allRefBanners[i].classList.forEach((value) => {
               if (value === "user") {
-                allRefBanners[i].style.display = "block";
+                allRefBanners[i].style.display = "flex";
               }
             })
           }
@@ -341,7 +378,7 @@ function getAvatar(clientYcId) {
       if (data.success) {
         if (localStorage.getItem("avatar") !== `url(${data.url})`) {
           localStorage.setItem("avatar", `url(${data.url})`);
-          location.reload();
+          // location.reload();
         }
       }
     })
@@ -364,14 +401,22 @@ fetch("/banners")
 
 const displayBanners = (data) => {
   console.info(data);
-  let innerP = "";
+ // let innerP = "";
   data.forEach(({ name, src, about, segment, button }, index) => {
+    let innerP = "";
+    let title = "";
+    let innerButton = "";
+    
+
     if (about === null) {
       innerP = "";
     } else {
       innerP = `<p class="tooltip">${about}</p>`;
     }
-    let innerButton = "";
+    // let innerButton = "";
+    if (name != null) {
+      title = name;
+    }
     if (button !== undefined) {
       if (button.url == "send_notify") {
         innerButton = `<button class="smallBtn sendForm" data-name="${name}" data-title="${about}">${button.name}</button>`
@@ -381,7 +426,7 @@ const displayBanners = (data) => {
     }
     innerSlideBar.innerHTML += `
     <div class="slide ${segment.join(" ")}" style="background-image: url('${src}');">
-    <h2 class="h3Ower">${name}</h2>
+    <h2 class="h3Ower">${title}</h2>
     ${innerP}
     ${innerButton}
   </div>`;
@@ -495,13 +540,13 @@ function displayStory(data, callback) {
     if (value.data.length > 0) {
       for (let i = 0; i < value.data.length; i++) {
         let length = 0;
-        if (value.data.type === "photo") {
+        if (value.data[i].type === "photo") {
           length = 6;
         }
         if (value.data[i].button.url) {
-          testStoryItem.push({ id: i, type: value.data.type, redirect: value.data[i].button.redirect, link: value.data[i].button.url, linkText: value.data[i].button.title, src: value.data[i].item, preview: value.data[i].item, time: timestamp(), length: length })
+          testStoryItem.push({ id: i, type: value.data[i].type, redirect: value.data[i].button.redirect, link: value.data[i].button.url, linkText: value.data[i].button.title, src: value.data[i].item, preview: value.data[i].item, time: timestamp(), length: length })
         } else {
-          testStoryItem.push({ id: i, type: value.data.type, src: value.data[i].item, preview: value.data[i].item, time: timestamp(), length: length })
+          testStoryItem.push({ id: i, type: value.data[i].type, src: value.data[i].item, preview: value.data[i].item, time: timestamp(), length: length })
         }
       }
     }
@@ -524,4 +569,11 @@ const anyFeadbackBnt = document.getElementById("anyFeadback");
 anyFeadbackBnt.addEventListener("click", () => {
   const getUrl = `/itemsMetrika?location=main-feedback&object=open_main_feedback&source=main-page&client_id=${clientYcId}`
   fetch(getUrl);
+})
+
+const goToCatalog = document.getElementById("pickTeacherPage");
+
+goToCatalog.addEventListener("click", () => {
+  window.location.href = "/teacher";
+  WebApp.BackButton.show();
 })
